@@ -82,7 +82,10 @@ export HOME=$old_home
 
 # Build middleman app
 cd $build_dir/client
-bundle exec middleman build --clean --verbose
+rm -rf build
+mkdir -p $cache_dir/middleman_build
+ln -s $cache_dir/middleman_build build
+bundle exec middleman build --verbose
 bundle exec middleman sync
 
 # Copy static files so they will be served by node
